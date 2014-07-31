@@ -85,15 +85,15 @@ Page {
                 text: "Settings"
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
-            MenuItem {
-                text: "Top"
-                onClicked: pageStack.push(Qt.resolvedUrl("ToplistPage.qml"))
-            }
-            MenuItem {
-                text: "Search"
-                onClicked: pageStack.push(Qt.resolvedUrl("SearchPage.qml"),
-                                          {"search": search})
-            }
+//            MenuItem {
+//                text: "Top"
+//                onClicked: pageStack.push(Qt.resolvedUrl("ToplistPage.qml"))
+//            }
+//            MenuItem {
+//                text: "Search"
+//                onClicked: pageStack.push(Qt.resolvedUrl("SearchPage.qml"),
+//                                          {"search": search})
+//            }
         }
 
         header: PageHeader {
