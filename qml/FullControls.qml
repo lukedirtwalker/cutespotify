@@ -155,7 +155,7 @@ Page {
                     }
                 }
 
-                model: spotifySession.playQueue.tracks()
+                model: spotifySession.playQueue
                 delegate: Item {
                     width: coverList.width
                     height: coverList.height
@@ -281,7 +281,7 @@ Page {
 
                 VerticalScrollDecorator {}
 
-                model: spotifySession.playQueue.tracks()
+                model: spotifySession.playQueue
                 delegate: TrackDelegate {
                     property bool isExplicit: spotifySession.playQueue.isExplicitTrack(index)
                     name: trackName
