@@ -17,7 +17,7 @@ Name:       harbour-cutespot
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    CuteSpot
 Version:    1.5.6
-Release:    3
+Release:    5
 Group:      Qt/Qt
 License:    BSD
 Source0:    %{name}-%{version}.tar.bz2
