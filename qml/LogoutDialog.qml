@@ -10,7 +10,7 @@ Dialog {
     property string userName
 
     DialogHeader {
-        acceptText: qsTr("Log out ") + userName
+        acceptText: qsTr("Log out")
     }
 
 

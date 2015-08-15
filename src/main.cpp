@@ -40,6 +40,7 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDebug>
+#include <QtCore/QDir>
 #include <QtCore/QSettings>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QScopedPointer>
@@ -53,6 +54,7 @@
 #include "../libQtSpotify/qspotify_qmlplugin.h"
 
 #include "customiconprovider.h"
+#include "storagemanager.h"
 
 using namespace std;
 
@@ -78,6 +80,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         // Set default path, but allow for it to be overridden
         // e.g. so data can be store on SD card
         settings.setValue("dataPath", settingsPath);
+    } else {
+        QString storedPath = settings.value("dataPath").toString();
+        if (!QDir(storedPath).exists()) {
+            qWarning() << "Stored path does not exist falling back to default";
+            settings.setValue("dataPath", settingsPath);
+        }
     }
     QScopedPointer<QGuiApplication> app {SailfishApp::application(argc, argv)};
     QQuickWindow::setDefaultAlphaBuffer(true);
@@ -88,10 +96,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     }
 
     registerQmlTypes();
+    qmlRegisterType<StorageManager>("harbour.cutespot", 1, 0, "StorageManager");
     view->rootContext()->setContextProperty(QLatin1String("spotifySession"), QSpotifySession::instance());
     view->rootContext()->setContextProperty("APP_VERSION", APP_VERSION);
     view->engine()->addImageProvider(QLatin1String("spotify"), new QSpotifyImageProvider);
     view->engine()->addImageProvider(QLatin1String("icon"), new CustomIconProvider);
+
+    QObject::connect(view->engine(), &QQmlEngine::quit, app.data(), &QGuiApplication::quit);
 
     view->setSource(QUrl("qrc:/qml/main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);

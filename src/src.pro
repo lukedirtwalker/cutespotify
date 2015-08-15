@@ -10,7 +10,8 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 SOURCES += \
     main.cpp \
-    customiconprovider.cpp
+    customiconprovider.cpp \
+    storagemanager.cpp
 
 RESOURCES += \
     ../res.qrc
@@ -45,4 +46,5 @@ INSTALLS += target desktop lib icon qtpulse
 include(../libQtSpotify/libQtSpotify.pri)
 
 HEADERS += \
-    customiconprovider.h
+    customiconprovider.h \
+    storagemanager.h

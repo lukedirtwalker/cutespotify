@@ -41,6 +41,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtSpotify 1.0
+import harbour.cutespot 1.0
 
 Page {
     id: settingsPage
@@ -182,6 +183,58 @@ Page {
                 text: qsTr("Show \"Available offline\" switch in playlist")
                 onClicked: spotifySession.showOfflineSwitch = checked
             }
+
+            SectionHeader {
+                text: qsTr("Storage")
+            }
+
+            ComboBox {
+                label: qsTr("Storage location")
+                menu: ContextMenu {
+                    MenuItem {
+                        text: qsTr("Internal")
+                        onClicked: {
+                            if (storageManager.changeLocationTo(StorageManager.InternalStorage)) {
+                                Qt.quit()
+                            }
+                        }
+                    }
+                    MenuItem {
+                        text: qsTr("SD-Card")
+                        enabled: storageManager.sdCardAvailable()
+                        onClicked: {
+                            if (storageManager.changeLocationTo(StorageManager.SDCardStorage)) {
+                                Qt.quit()
+                            }
+                        }
+                    }
+                }
+                currentIndex: storageManager.currentLocation() === StorageManager.InternalStorage ? 0 : 1
+                description: qsTr("Note that changing the storage location requires a restart of the app!"
+                                  + " After changing the location the app will quit!")
+            }
+
+            Button {
+                id: internalButton
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Delete internal cache")
+                visible: storageManager.canClearStorage(StorageManager.InternalStorage)
+                onClicked: {
+                    remorse.execute(qsTr("Delete internal cache"),
+                                    function() {storageManager.clearStorage(StorageManager.InternalStorage)})
+                }
+            }
+
+            Button {
+                id: sdButton
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Delete SD-card cache")
+                visible: storageManager.canClearStorage(StorageManager.SDCardStorage)
+                onClicked: {
+                    remorse.execute(qsTr("Delete SD-card cache"),
+                                    function() {storageManager.clearStorage(StorageManager.SDCardStorage)})
+                }
+            }
         }
 
         ContextMenu {
@@ -199,5 +252,11 @@ Page {
                 }
             }
         }
+    }
+
+    RemorsePopup { id: remorse }
+
+    StorageManager {
+        id: storageManager
     }
 }
