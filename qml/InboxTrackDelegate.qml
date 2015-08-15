@@ -69,7 +69,7 @@ ListItem {
 
     Column {
         anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
         anchors.right: parent.right
         spacing: -Theme.paddingSmall
         opacity: listItem.available ? 1.0 : 0.3
@@ -78,7 +78,7 @@ ListItem {
             height: mainText.height
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.horizontalPageMargin
 
             Label {
                 id: mainText

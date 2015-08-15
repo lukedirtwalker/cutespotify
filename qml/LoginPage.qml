@@ -75,8 +75,8 @@ Page {
             spacing: Theme.paddingLarge
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: Theme.paddingLarge
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.leftMargin: Theme.horizontalPageMargin
+            anchors.rightMargin: Theme.horizontalPageMargin
 
             Image {
                 id: logo
@@ -132,8 +132,8 @@ Page {
                     Label {
                         anchors {
                             left: parent.left
-                            leftMargin: Theme.paddingLarge * 2
                             right: parent.right
+                            margins: Theme.horizontalPageMargin + Theme.paddingLarge
                         }
                         onLinkActivated: Qt.openUrlExternally(link)
                         textFormat: Text.RichText

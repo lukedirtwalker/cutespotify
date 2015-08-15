@@ -81,7 +81,7 @@ ListItem {
             id: mainText
             text: listItem.name
             anchors.left: parent.left
-            anchors.leftMargin: Theme.paddingLarge
+            anchors.leftMargin: Theme.horizontalPageMargin
             anchors.right: iconItem.left
             anchors.rightMargin: Theme.paddingLarge
             anchors.verticalCenter: parent.verticalCenter
@@ -108,7 +108,7 @@ ListItem {
             font.pixelSize: Theme.fontSizeSmall
             color: (highlighted || isPlaying) ? Theme.secondaryHighlightColor : Theme.secondaryColor
             anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.horizontalPageMargin
             visible: text != ""
         }
     }

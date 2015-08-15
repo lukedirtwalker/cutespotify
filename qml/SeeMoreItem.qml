@@ -10,9 +10,9 @@ BackgroundItem {
     height: Theme.itemSizeSmall
     Label {
         anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
         anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.rightMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
         text: qsTr("See more %1...".arg(moreText))
         color: moreItem.highlighted ? Theme.highlightColor : Theme.primaryColor

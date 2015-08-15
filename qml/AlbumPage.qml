@@ -132,9 +132,9 @@ Page {
                 width: parent ? parent.width : 0
                 height: paintedHeight + Theme.paddingLarge * 2
                 anchors.left: parent.left
-                anchors.leftMargin: Theme.paddingLarge
+                anchors.leftMargin: Theme.horizontalPageMargin
                 anchors.right:  parent.right
-                anchors.rightMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.horizontalPageMargin
                 text: parent ? modelData : ""
                 textFormat: Text.RichText
                 wrapMode: Text.WordWrap

@@ -88,8 +88,8 @@ ListItem {
 
     Row {
         anchors.fill: parent
-        anchors.leftMargin: Theme.paddingMedium
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
+        anchors.rightMargin: Theme.horizontalPageMargin
         spacing: Theme.paddingMedium
 
         SpotifyImage {

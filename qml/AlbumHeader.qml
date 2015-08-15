@@ -80,8 +80,9 @@ Item {
         spacing: Theme.paddingMedium
         anchors.top: header.bottom
         anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
         height: parent.height - header.height
+        width: parent.width - 2 * Theme.horizontalPageMargin
 
         SpotifyImage {
             id: coverImage
@@ -91,7 +92,7 @@ Item {
 
         Column {
             id: desc
-            width: parent.width - coverImage.width - Theme.paddingLarge
+            width: parent.width - coverImage.width - Theme.horizontalPageMargin
 
             Label {
                 id: artistText

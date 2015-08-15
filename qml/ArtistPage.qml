@@ -137,8 +137,8 @@ Page {
             Label {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingLarge
-                anchors.leftMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.horizontalPageMargin
+                anchors.leftMargin: Theme.horizontalPageMargin
                 height: paintedHeight + Theme.paddingLarge
                 text: "<style type=text/css> a { text-decoration: none; color:" + color + "} </style>" + modelData
                 textFormat: Text.RichText

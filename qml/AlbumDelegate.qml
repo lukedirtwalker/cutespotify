@@ -88,7 +88,7 @@ ListItem {
         id: coverContainer
         width: Theme.iconSizeMedium; height: width
         anchors.left: indexText.right
-        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : Theme.paddingLarge
+        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
         color: Theme.secondaryHighlightColor
         opacity: listItem.available ? 1.0 : 0.3
@@ -104,7 +104,7 @@ ListItem {
         anchors.left: coverContainer.right
         anchors.leftMargin: Theme.paddingLarge
         anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.rightMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
         opacity: listItem.available ? 1.0 : 0.3
 

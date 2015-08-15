@@ -81,7 +81,7 @@ Item {
         spacing: Theme.paddingMedium
         anchors.top: header.bottom
         anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
         height: parent.height - header.height
 
         SpotifyImage {

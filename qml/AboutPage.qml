@@ -58,7 +58,7 @@ Page {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: Theme.paddingLarge
+                margins: Theme.horizontalPageMargin
             }
 
             spacing: Theme.paddingLarge

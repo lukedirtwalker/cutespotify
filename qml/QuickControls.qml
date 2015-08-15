@@ -45,7 +45,7 @@ DockedPanel {
     id: controlsFlickable
 
     width: parent.width
-    height: 150
+    height: Math.max(parent.height * 0.15, 150) // The magic number (<= 150 / 940) seems good
 
     contentHeight: height
     flickableDirection: Flickable.VerticalFlick
@@ -89,13 +89,15 @@ DockedPanel {
                 id: trackInfo
                 width: parent.width - cover.width - Theme.paddingLarge
                 height: parent.height
-                spacing: -Theme.paddingSmall
+                spacing: (height - trackNameLabel.paintedHeight - artistsLabel.paintedHeight - controls.height) / 3
                 Label {
+                    id: trackNameLabel
                     width: parent.width
                     truncationMode: TruncationMode.Fade
                     text: spotifySession.currentTrack ? spotifySession.currentTrack.name : ""
                 }
                 Label {
+                    id: artistsLabel
                     width: parent.width
                     font.pixelSize: Theme.fontSizeSmall
                     truncationMode: TruncationMode.Fade
@@ -121,7 +123,7 @@ DockedPanel {
                     IconButton {
                         width: controls.itemWidth
                         anchors.verticalCenter: parent.verticalCenter
-                        icon.source: "image://theme/icon-m-previous-song"
+                        icon.source: "image://theme/icon-m-previous"
                         onClicked: spotifySession.playPrevious()
                     }
 
@@ -136,7 +138,7 @@ DockedPanel {
                     IconButton {
                         width: controls.itemWidth
                         anchors.verticalCenter: parent.verticalCenter
-                        icon.source: "image://theme/icon-m-next-song"
+                        icon.source: "image://theme/icon-m-next"
                         onClicked: spotifySession.playNext()
                     }
                 }

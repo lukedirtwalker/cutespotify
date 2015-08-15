@@ -5,6 +5,8 @@ import QtSpotify 1.0
 Dialog {
     id: playlistSelectionDialog
 
+    allowedOrientations: Orientation.All
+
     property var track: null
     property var album: null
     property Component delegate: defaultDelegate
@@ -39,9 +41,9 @@ Dialog {
             Label {
                 anchors {
                     left: parent.left
-                    leftMargin: Theme.paddingLarge
+                    leftMargin: Theme.horizontalPageMargin
                     right: parent.right
-                    rightMargin: Theme.paddingLarge
+                    rightMargin: Theme.horizontalPageMargin
                     verticalCenter: parent.verticalCenter
                 }
                 text: name

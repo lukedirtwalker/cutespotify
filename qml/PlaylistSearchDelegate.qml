@@ -21,10 +21,10 @@ BackgroundItem {
 
     Row {
         anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.rightMargin: Theme.horizontalPageMargin
         spacing: Theme.paddingLarge
 
         Image {

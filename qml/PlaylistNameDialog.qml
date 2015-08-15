@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 Dialog {
     id: playlistNameDialog
 
+    allowedOrientations: Orientation.All
+
     property alias acceptText: header.acceptText
     property variant playlist
 

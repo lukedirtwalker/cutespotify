@@ -19,8 +19,8 @@ Dialog {
         width: parent.width
         anchors.top: parent.top
         anchors.topMargin: Theme.itemSizeLarge
-        anchors.leftMargin: Theme.paddingLarge
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.leftMargin: Theme.horizontalPageMargin
+        anchors.rightMargin: Theme.horizontalPageMargin
 
         TextField {
             id: lfmUser

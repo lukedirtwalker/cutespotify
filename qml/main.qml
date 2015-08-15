@@ -71,7 +71,7 @@ ApplicationWindow {
         id: errorRect
         color: Theme.highlightColor
         width: parent.width
-        height: 32
+        height: 32 // TODO: fix for scaling
         visible: false
 
         Label {

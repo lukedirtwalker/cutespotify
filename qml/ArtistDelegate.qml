@@ -77,7 +77,7 @@ BackgroundItem {
         id: portraitContainer
         width: Theme.iconSizeMedium; height: width
         anchors.left: indexText.right
-        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : Theme.paddingLarge
+        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
         color: Theme.secondaryHighlightColor
 
@@ -97,7 +97,7 @@ BackgroundItem {
         anchors.leftMargin: Theme.paddingLarge
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingLarge
+        anchors.rightMargin: Theme.horizontalPageMargin
         truncationMode: TruncationMode.Fade
         color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
     }

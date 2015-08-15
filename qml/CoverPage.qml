@@ -50,6 +50,7 @@ CoverBackground {
 
     CoverActionList {
         id: coverAction
+        enabled: spotifySession.currentTrack
 
         CoverAction {
             iconSource: spotifySession.currentTrack ? (spotifySession.isPlaying ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play") : ""

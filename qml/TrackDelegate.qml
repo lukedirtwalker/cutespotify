@@ -94,7 +94,7 @@ ListItem {
         id: coverContainer
         width: listItem.coverId.length > 0 ? Theme.iconSizeMedium : 0; height: width
         anchors.left: indexText.right
-        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : (visible ? Theme.paddingLarge : 0)
+        anchors.leftMargin: indexText.visible ? Theme.paddingSmall : (visible ? Theme.horizontalPageMargin : 0)
         anchors.verticalCenter: parent.verticalCenter
         color: Theme.secondaryColor
         opacity: listItem.available ? 1.0 : 0.3
@@ -109,7 +109,7 @@ ListItem {
 
     Column {
         anchors.left: coverContainer.right
-        anchors.leftMargin: Theme.paddingLarge
+        anchors.leftMargin: coverContainer.width > 0 ? Theme.paddingLarge : Theme.horizontalPageMargin
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         opacity: listItem.available ? 1.0 : 0.3
@@ -146,7 +146,7 @@ ListItem {
             height: subText.height
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.horizontalPageMargin
             Label {
                 id: subText
                 text: listItem.artistAndAlbum
