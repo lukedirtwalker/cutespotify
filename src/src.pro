@@ -38,10 +38,12 @@ qtpulse.path = $$PREFIX/share/harbour-cutespot/lib/audio/
 qtpulse.files = ../libspotify/lib/audio/*
 desktop.path = $$PREFIX/share/applications/
 desktop.files = ../harbour-cutespot.desktop
-icon.path = $$PREFIX/share/icons/hicolor/86x86/apps/
-icon.files = ../harbour-cutespot.png
+icon_86.path = $$PREFIX/share/icons/hicolor/86x86/apps/
+icon_86.files = ../icon/86x86/harbour-cutespot.png
+icon_128.path = $$PREFIX/share/icons/hicolor/128x128/apps/
+icon_128.files = ../icon/128x128/harbour-cutespot.png
 target.path = $$PREFIX/bin
-INSTALLS += target desktop lib icon qtpulse
+INSTALLS += target desktop lib icon_86 icon_128 qtpulse
 
 include(../libQtSpotify/libQtSpotify.pri)
 
