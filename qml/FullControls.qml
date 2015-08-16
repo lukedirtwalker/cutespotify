@@ -148,14 +148,7 @@ Page {
                         spotifySession.playQueue.selectTrack(currentIndex)
                 }
 
-                Connections {
-                    target: spotifySession.playQueue
-                    onTracksChanged: {
-                        coverList.currentIndex = coverList.model.currentPlayIndex
-                    }
-                }
-
-                model: spotifySession.playQueue.tracks()
+                model: spotifySession.playQueue
                 delegate: Item {
                     width: coverList.width
                     height: coverList.height
@@ -281,12 +274,12 @@ Page {
 
                 VerticalScrollDecorator {}
 
-                model: spotifySession.playQueue.tracks()
+                model: spotifySession.playQueue
                 delegate: TrackDelegate {
-                    property bool isExplicit: spotifySession.playQueue.isExplicitTrack(index)
+                    isQueuedTrack: spotifySession.playQueue.isExplicitTrack(index)
                     name: trackName
-                    //backgroundOpacity: isExplicit ? 0.6 : 0.0
-                    // TODO those colors are no longer used.. / the opacity above neither
+//                    backgroundOpacity: isExplicit ? 0.6 : 0.0
+//                     TODO those colors are no longer used.. / the opacity above neither
                     //titleColor: isExplicit ? ("#c6a83f") : (UI.LIST_TITLE_COLOR)
                     //subtitleColor: isExplicit ? ("#a79144") : (UI.LIST_SUBTITLE_COLOR)
                     artistAndAlbum: artists + " | " + album
@@ -294,7 +287,7 @@ Page {
                     isPlaying: isCurrentPlayingTrack
                     onClicked: {
                         if (!isCurrentPlayingTrack)
-                            spotifySession.playQueue.selectTrack(index)
+                            spotifySession.playQueue.playTrackAt(index)
                         else
                             flipable.flipped = false
                     }

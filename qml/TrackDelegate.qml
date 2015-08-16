@@ -54,6 +54,7 @@ ListItem {
     property bool available: model.isAvailable
     property bool showIndex: false
     property bool isPlaying: model.isCurrentPlayingTrack
+    property bool isQueuedTrack: false
 
     property bool canDelete: false
     property bool canSeeAlbum: true
@@ -61,7 +62,7 @@ ListItem {
     onClicked: {
         if(isPlaying && !spotifySession.isPlaying)
             spotifySession.resume()
-        else
+        else if (listModel)
             listModel.playTrack(index)
     }
 
@@ -86,7 +87,7 @@ ListItem {
         text: (index + 1) + "."
         font.pixelSize: Theme.fontSizeSmall
         horizontalAlignment: Text.AlignRight
-        color: (highlighted || isPlaying) ? Theme.highlightColor : Theme.primaryColor
+        color: (highlighted || isPlaying) ? Theme.highlightColor : (isQueuedTrack ? Theme.secondaryHighlightColor : Theme.primaryColor)
         visible: listItem.showIndex
     }
 
@@ -118,7 +119,7 @@ ListItem {
             height: mainText.height
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.horizontalPageMargin
 
             Label {
                 id: mainText

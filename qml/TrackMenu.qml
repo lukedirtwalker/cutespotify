@@ -55,11 +55,10 @@ ContextMenu {
         onClicked: { track.seen = !track.seen }
         visible: trackMenu.markSeenVisible && !spotifySession.offlineMode;
     }
-    // TODO implement QUEUEING
-//    MenuItem {
-//        text: qsTr("Add to queue");
-//        onClicked: { track.enqueue() }
-//    }
+    MenuItem {
+        text: qsTr("Add to queue");
+        onClicked: { track.enqueue() }
+    }
     MenuItem {
         id: starItem
         onClicked: { track.isStarred = !track.isStarred }

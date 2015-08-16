@@ -54,12 +54,11 @@ ContextMenu {
         onClicked: { playlist.play() }
         visible: (playlist && playlist.trackCount > 0) ? true : false
     }
-    // TODO: uncomment once we have a proper queue
-//    MenuItem {
-//        text: qsTr("Add to queue");
-//        onClicked: { playlist.enqueue() }
-//        visible: (playlist && (playlist.trackCount > 0 || playlist.type === SpotifyPlaylist.Folder)) ? true : false
-//    }
+    MenuItem {
+        text: qsTr("Add to queue");
+        onClicked: { playlist.enqueue() }
+        visible: (playlist && (playlist.trackCount > 0 || playlist.type === SpotifyPlaylist.Folder)) ? true : false
+    }
     MenuItem {
         text: qsTr("Rename")
         onClicked: {

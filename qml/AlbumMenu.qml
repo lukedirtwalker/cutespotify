@@ -55,11 +55,10 @@ ContextMenu {
         visible: playVisible
         onClicked: { albumBrowse.play() }
     }
-    // TODO enable once we have proper queue
-//    MenuItem {
-//        text:qsTr("Add to queue")
-//        onClicked: { albumBrowse.enqueue() }
-//    }
+    MenuItem {
+        text:qsTr("Add to queue")
+        onClicked: { albumBrowse.enqueue() }
+    }
 
     // TODO starring doesn't work reliable figure out why
 //    MenuItem {
