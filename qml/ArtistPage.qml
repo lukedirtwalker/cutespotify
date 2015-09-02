@@ -113,6 +113,7 @@ Page {
                 listModel: browse.topTracks()
                 coverId: albumCoverId
                 showIndex: true
+                onClicked: defaultClicked()
             }
         }
 

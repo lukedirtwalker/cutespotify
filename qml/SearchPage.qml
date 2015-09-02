@@ -54,7 +54,7 @@ Page {
                 property variant modelVar: search.trackResultsPreview()
                 width: parent.width
                 model: modelVar
-                delegate: TrackDelegate { listModel: tracksView.modelVar}
+                delegate: TrackDelegate { listModel: tracksView.modelVar; onClicked: defaultClicked();}
 
                 Component.onCompleted: modelVar = search.trackResultsPreview()
             }
@@ -74,6 +74,7 @@ Page {
                     id: trackDelegate
                     TrackDelegate {
                         listModel: search.trackResults()
+                        onClicked: defaultClicked()
                     }
                 }
             }

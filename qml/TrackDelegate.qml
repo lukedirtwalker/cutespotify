@@ -59,7 +59,7 @@ ListItem {
     property bool canDelete: false
     property bool canSeeAlbum: true
 
-    onClicked: {
+    function defaultClicked() {
         if(isPlaying && !spotifySession.isPlaying)
             spotifySession.resume()
         else if (listModel)

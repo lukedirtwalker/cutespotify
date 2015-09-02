@@ -123,6 +123,7 @@ Page {
             TrackDelegate {
                 listModel: browse.tracks()
                 artistAndAlbum: model.artists
+                onClicked: defaultClicked()
             }
         }
 

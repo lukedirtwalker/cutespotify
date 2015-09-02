@@ -142,10 +142,9 @@ Page {
 
                 highlightFollowsCurrentItem: true
 
-                currentIndex: -1
                 onMovingChanged: {
                     if (!moving)
-                        spotifySession.playQueue.selectTrack(currentIndex)
+                        spotifySession.playQueue.playTrackAt(currentIndex)
                 }
 
                 model: spotifySession.playQueue
@@ -167,6 +166,10 @@ Page {
                             onClicked: flipable.flipped = true
                         }
                     }
+                }
+                Connections {
+                    target: spotifySession
+                    onCurrentTrackChanged: coverList.positionViewAtIndex(coverList.model.currentPlayIndex, ListView.Center)
                 }
             }
 
@@ -267,7 +270,6 @@ Page {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                cacheBuffer: 80
                 clip: true
 
                 currentIndex: -1
@@ -284,7 +286,7 @@ Page {
                     //subtitleColor: isExplicit ? ("#a79144") : (UI.LIST_SUBTITLE_COLOR)
                     artistAndAlbum: artists + " | " + album
                     duration: duration
-                    isPlaying: isCurrentPlayingTrack
+                    isPlaying: index == 0
                     onClicked: {
                         if (!isCurrentPlayingTrack)
                             spotifySession.playQueue.playTrackAt(index)

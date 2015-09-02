@@ -113,6 +113,7 @@ Page {
                 listModel: toplist.tracks()
                 coverId: albumCoverId
                 showIndex: true
+                onClicked: defaultClicked()
             }
         }
         Component {
