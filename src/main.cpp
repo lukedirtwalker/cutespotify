@@ -70,7 +70,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("CuteSpot");
     QCoreApplication::setOrganizationDomain("com.mikeasoft.cutespot");
     QCoreApplication::setApplicationName("CuteSpot");
-    QCoreApplication::setApplicationVersion("1.3.0");
+    QCoreApplication::setApplicationVersion(APP_VERSION);
     QCoreApplication::addLibraryPath("/usr/share/harbour-cutespot/lib/");
 
     QString settingsPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/harbour-cutespot/";
@@ -91,14 +91,18 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QQuickWindow::setDefaultAlphaBuffer(true);
     QScopedPointer<QQuickView> view {SailfishApp::createView()};
 
-    if (!app->arguments().contains(QLatin1String("--debug"))) {
+    QStringList args = app->arguments();
+    if (!args.contains(QLatin1String("--debug"))) {
         qInstallMessageHandler(silentDebug);
     }
+    args.removeAll("--debug");
 
     registerQmlTypes();
     qmlRegisterType<StorageManager>("harbour.cutespot", 1, 0, "StorageManager");
     view->rootContext()->setContextProperty(QLatin1String("spotifySession"), QSpotifySession::instance());
     view->rootContext()->setContextProperty("APP_VERSION", APP_VERSION);
+
+    view->rootContext()->setContextProperty("openUri", args.size() > 1 ? args[1] : "");
     view->engine()->addImageProvider(QLatin1String("spotify"), new QSpotifyImageProvider);
     view->engine()->addImageProvider(QLatin1String("icon"), new CustomIconProvider);
 

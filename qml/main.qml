@@ -41,17 +41,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtSpotify 1.0
-import Sailfish.Media 1.0
-import org.nemomobile.policy 1.0
 
 ApplicationWindow {
     id: appWindow
 
     allowedOrientations: Orientation.All
-
     bottomMargin: quickControls.visibleSize
-
-    property bool grabKeys: keysResource.acquired
 
     cover: Qt.resolvedUrl("CoverPage.qml")
 
@@ -109,7 +104,11 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        spotifySession.isLoggedIn ? pageStack.push(mainPage) : pageStack.push(loginPage)
+        if (spotifySession.isLoggedIn) {
+            pushMainPage()
+        } else {
+            pageStack.push(loginPage)
+        }
         if (!spotifySession.isOnline && (!spotifySession.user || !spotifySession.offlineMode))
             openConnection();
     }
@@ -118,6 +117,13 @@ ApplicationWindow {
         var xhr = new XMLHttpRequest;
         xhr.open("GET", "http://m.google.com"); //force opening a connection
         xhr.send();
+    }
+
+    function pushMainPage() {
+        pageStack.push(mainPage)
+        if (openUri !== "") {
+            spotifySession.handleUri(openUri)
+        }
     }
 
     Connections {
@@ -133,7 +139,7 @@ ApplicationWindow {
         onPendingConnectionRequestChanged: {
             if (!spotifySession.pendingConnectionRequest && spotifySession.isLoggedIn) {
                 pageStack.clear() // Remove login page from stack
-                pageStack.push(mainPage)
+                pushMainPage()
             } else if (spotifySession.pendingConnectionRequest && spotifySession.isLoggedIn) {
                 pageStack.clear()
                 pageStack.push(loginPage)
@@ -163,80 +169,6 @@ ApplicationWindow {
                 showFullControls = false;
                 quickControls.open = false;
             }
-        }
-    }
-
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_AudioRepeat
-        onPressed: {
-            spotifySession.repeat = !spotifySession.repeat;
-        }
-    }
-
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_AudioRandomPlay
-        onPressed: spotifySession.shuffle = !spotifySession.shuffle
-    }
-
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_MediaTogglePlayPause
-        onPressed: spotifySession.isPlaying ? spotifySession.pause() : spotifySession.resume()
-    }
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_MediaPlay
-        onPressed: spotifySession.resume()
-    }
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_MediaPause
-        onPressed: spotifySession.pause()
-    }
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_MediaStop
-        onPressed: spotifySession.stop();
-    }
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_MediaNext
-        onPressed: spotifySession.playNext()
-    }
-    MediaKey {
-        enabled: true
-        key: Qt.Key_MediaPrevious
-        onPressed: spotifySession.playPrevious()
-    }
-
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_AudioForward
-        onPressed: spotifySession.seek(Math.max(0, spotifySession.currentTrackPosition + 500))
-        onRepeat: spotifySession.seek(Math.max(0, spotifySession.currentTrackPosition + 1000))
-        onReleased: nextTimer.stop()
-    }
-    Timer { id: nextTimer; interval: 500; onTriggered: spotifySession.playNext() }
-
-    MediaKey {
-        enabled: grabKeys
-        key: Qt.Key_AudioRewind
-        onPressed: spotifySession.seek(Math.max(0, spotifySession.currentTrackPosition - 500))
-        onRepeat: spotifySession.seek(Math.max(0, spotifySession.currentTrackPosition - 1000))
-        onReleased: previousTimer.stop()
-    }
-    Timer { id: previousTimer; interval: 500; onTriggered: spotifySession.playPrevious() }
-
-    Permissions {
-        enabled: true
-        applicationClass: "player"
-
-        Resource {
-            id: keysResource
-            type: Resource.HeadsetButtons
-            optional: true
         }
     }
 }

@@ -3,6 +3,5 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Name=CuteSpot
 Icon=harbour-cutespot
-Exec=harbour-cutespot
-
-X-Desktop-File-Install-Version=0.20
+Exec=harbour-cutespot %u
+MimeType=x-maemo-urischeme/spotify;x-scheme-handler/spotify;
